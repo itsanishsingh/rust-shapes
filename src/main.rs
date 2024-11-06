@@ -44,18 +44,44 @@ impl ShapeOperations for Square {
     }
 }
 
+struct Circle {
+    radius: f64,
+}
+
+impl Circle {
+    fn new(radius: f64) -> Circle {
+        Circle { radius }
+    }
+}
+
+impl ShapeOperations for Circle {
+    fn area(&self) -> f64 {
+        return 3.14 * self.radius * self.radius;
+    }
+
+    fn perimeter(&self) -> f64 {
+        return 2 as f64 * 3.14 * self.radius;
+    }
+}
+
 fn main() {
     let length: f64 = 6 as f64;
     let width: f64 = 8 as f64;
 
     let size: f64 = 5 as f64;
 
+    let radius: f64 = 7 as f64;
+
     let rect = Rectangle::new(length, width);
     let sq = Square::new(size);
+    let cir = Circle::new(radius);
 
     println!("The perimeter of rectangle is {}", rect.perimeter());
     println!("The area of rectangle is {}", rect.area());
 
     println!("The perimeter of square is {}", sq.perimeter());
     println!("The area of square is {}", sq.area());
+
+    println!("The circumference of circle is {}", cir.perimeter());
+    println!("The area of circle is {}", cir.area());
 }
