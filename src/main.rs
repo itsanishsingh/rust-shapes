@@ -1,8 +1,7 @@
-// trait ShapeOperations {
-//     fn new() -> Self;
-//     fn area(&self) -> f64;
-//     fn perimeter(&self) -> f64;
-// }
+trait ShapeOperations {
+    fn area(&self) -> f64;
+    fn perimeter(&self) -> f64;
+}
 
 struct Rectangle {
     length: f64,
@@ -13,7 +12,9 @@ impl Rectangle {
     fn new(length: f64, width: f64) -> Rectangle {
         Rectangle { length, width }
     }
+}
 
+impl ShapeOperations for Rectangle {
     fn perimeter(&self) -> f64 {
         return 2 as f64 * (self.length + self.width);
     }
@@ -31,7 +32,9 @@ impl Square {
     fn new(size: f64) -> Square {
         Square { size }
     }
+}
 
+impl ShapeOperations for Square {
     fn area(&self) -> f64 {
         return self.size * self.size;
     }
@@ -42,10 +45,10 @@ impl Square {
 }
 
 fn main() {
-    let length: f64 = 5 as f64;
-    let width: f64 = 3 as f64;
+    let length: f64 = 6 as f64;
+    let width: f64 = 8 as f64;
 
-    let size: f64 = 4 as f64;
+    let size: f64 = 5 as f64;
 
     let rect = Rectangle::new(length, width);
     let sq = Square::new(size);
