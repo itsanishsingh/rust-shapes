@@ -1,17 +1,13 @@
-struct Rectangle {
-    length: f64,
-    width: f64,
-}
-
-struct Square {
-    size: f64,
-}
-
 // trait ShapeOperations {
 //     fn new() -> Self;
 //     fn area(&self) -> f64;
 //     fn perimeter(&self) -> f64;
 // }
+
+struct Rectangle {
+    length: f64,
+    width: f64,
+}
 
 impl Rectangle {
     fn new(length: f64, width: f64) -> Rectangle {
@@ -27,17 +23,21 @@ impl Rectangle {
     }
 }
 
+struct Square {
+    size: f64,
+}
+
 impl Square {
     fn new(size: f64) -> Square {
-        Square {size}
+        Square { size }
     }
 
     fn area(&self) -> f64 {
-        return self.size*self.size;
+        return self.size * self.size;
     }
 
     fn perimeter(&self) -> f64 {
-        return self.size*4 as f64;
+        return self.size * 4 as f64;
     }
 }
 
