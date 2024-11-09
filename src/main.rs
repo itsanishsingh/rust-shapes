@@ -64,26 +64,56 @@ impl ShapeOperations for Circle {
     }
 }
 
+struct Triangle {
+    side1: f64,
+    side2: f64,
+    side3: f64,
+}
+
+impl Triangle {
+    fn new(side1: f64, side2: f64, side3: f64) -> Triangle {
+        Triangle {
+            side1,
+            side2,
+            side3,
+        }
+    }
+}
+
+impl ShapeOperations for Triangle {
+    fn area(&self) -> f64 {
+        let s: f64 = self.perimeter() / 2.0;
+        (s * (s - self.side1) * (s - self.side2) * (s - self.side3)).sqrt()
+    }
+
+    fn perimeter(&self) -> f64 {
+        self.side1 + self.side2 + self.side3
+    }
+}
+
 enum ShapeType {
     Rectangle(Rectangle),
     Square(Square),
     Circle(Circle),
+    Triangle(Triangle),
 }
 
 impl ShapeOperations for ShapeType {
     fn area(&self) -> f64 {
         match self {
-            ShapeType::Rectangle(r) => r.area(),
-            ShapeType::Square(s) => s.area(),
-            ShapeType::Circle(c) => c.area(),
+            Self::Rectangle(r) => r.area(),
+            Self::Square(s) => s.area(),
+            Self::Circle(c) => c.area(),
+            Self::Triangle(t) => t.area(),
         }
     }
 
     fn perimeter(&self) -> f64 {
         match self {
-            ShapeType::Rectangle(r) => r.perimeter(),
-            ShapeType::Square(s) => s.perimeter(),
-            ShapeType::Circle(c) => c.perimeter(),
+            Self::Rectangle(r) => r.perimeter(),
+            Self::Square(s) => s.perimeter(),
+            Self::Circle(c) => c.perimeter(),
+            Self::Triangle(t) => t.perimeter(),
         }
     }
 }
@@ -96,16 +126,19 @@ fn main() {
 
     let radius: f64 = 7 as f64;
 
+    let side1: f64 = 3 as f64;
+    let side2: f64 = 4 as f64;
+    let side3: f64 = 5 as f64;
+
     let shape1 = ShapeType::Rectangle(Rectangle::new(length, width));
     let shape2 = ShapeType::Square(Square::new(size));
     let shape3 = ShapeType::Circle(Circle::new(radius));
+    let shape4 = ShapeType::Triangle(Triangle::new(side1, side2, side3));
 
-    println!("The perimeter of rectangle is {}", shape1.perimeter());
-    println!("The area of rectangle is {}", shape1.area());
+    let all_shapes = [shape1, shape2, shape3, shape4];
 
-    println!("The perimeter of square is {}", shape2.perimeter());
-    println!("The area of square is {}", shape2.area());
-
-    println!("The circumference of circle is {}", shape3.perimeter());
-    println!("The area of circle is {}", shape3.area());
+    for shape in all_shapes {
+        println!("The perimeter of shape is {}", shape.perimeter());
+        println!("The area of shape is {}", shape.area());
+    }
 }
