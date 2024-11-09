@@ -96,16 +96,16 @@ fn main() {
 
     let radius: f64 = 7 as f64;
 
-    let rect = ShapeType::Rectangle(Rectangle::new(length, width));
-    let sq = ShapeType::Square(Square::new(size));
-    let cir = ShapeType::Circle(Circle::new(radius));
+    let shape1 = ShapeType::Rectangle(Rectangle::new(length, width));
+    let shape2 = ShapeType::Square(Square::new(size));
+    let shape3 = ShapeType::Circle(Circle::new(radius));
 
-    println!("The perimeter of rectangle is {}", rect.perimeter());
-    println!("The area of rectangle is {}", rect.area());
+    println!("The perimeter of rectangle is {}", shape1.perimeter());
+    println!("The area of rectangle is {}", shape1.area());
 
-    println!("The perimeter of square is {}", sq.perimeter());
-    println!("The area of square is {}", sq.area());
+    println!("The perimeter of square is {}", shape2.perimeter());
+    println!("The area of square is {}", shape2.area());
 
-    println!("The circumference of circle is {}", cir.perimeter());
-    println!("The area of circle is {}", cir.area());
+    println!("The circumference of circle is {}", shape3.perimeter());
+    println!("The area of circle is {}", shape3.area());
 }
