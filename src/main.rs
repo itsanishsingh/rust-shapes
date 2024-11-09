@@ -64,6 +64,30 @@ impl ShapeOperations for Circle {
     }
 }
 
+enum ShapeType {
+    Rectangle(Rectangle),
+    Square(Square),
+    Circle(Circle),
+}
+
+impl ShapeOperations for ShapeType {
+    fn area(&self) -> f64 {
+        match self {
+            ShapeType::Rectangle(r) => r.area(),
+            ShapeType::Square(s) => s.area(),
+            ShapeType::Circle(c) => c.area(),
+        }
+    }
+
+    fn perimeter(&self) -> f64 {
+        match self {
+            ShapeType::Rectangle(r) => r.perimeter(),
+            ShapeType::Square(s) => s.perimeter(),
+            ShapeType::Circle(c) => c.perimeter(),
+        }
+    }
+}
+
 fn main() {
     let length: f64 = 6 as f64;
     let width: f64 = 8 as f64;
@@ -72,9 +96,9 @@ fn main() {
 
     let radius: f64 = 7 as f64;
 
-    let rect = Rectangle::new(length, width);
-    let sq = Square::new(size);
-    let cir = Circle::new(radius);
+    let rect = ShapeType::Rectangle(Rectangle::new(length, width));
+    let sq = ShapeType::Square(Square::new(size));
+    let cir = ShapeType::Circle(Circle::new(radius));
 
     println!("The perimeter of rectangle is {}", rect.perimeter());
     println!("The area of rectangle is {}", rect.area());
