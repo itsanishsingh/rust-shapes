@@ -98,6 +98,17 @@ enum ShapeType {
     Triangle(Triangle),
 }
 
+impl ShapeType {
+    fn type_name(&self) -> &str {
+        match self {
+            Self::Circle(_) => "Circle",
+            Self::Rectangle(_) => "Rectangle",
+            Self::Square(_) => "Square",
+            Self::Triangle(_) => "Triangle",
+        }
+    }
+}
+
 impl ShapeOperations for ShapeType {
     fn area(&self) -> f64 {
         match self {
@@ -138,7 +149,15 @@ fn main() {
     let all_shapes = [shape1, shape2, shape3, shape4];
 
     for shape in all_shapes {
-        println!("The perimeter of shape is {}", shape.perimeter());
-        println!("The area of shape is {}", shape.area());
+        println!(
+            "The perimeter of shape {} is {}",
+            shape.type_name(),
+            shape.perimeter()
+        );
+        println!(
+            "The area of shape {} is {}",
+            shape.type_name(),
+            shape.area()
+        );
     }
 }
